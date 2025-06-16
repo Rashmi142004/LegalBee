@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LegalBee AI</title>
+  <link rel="icon" href="favicon.ico" />
+  <style>
+    body { font-family: Arial, sans-serif; background: #fff8e1; margin: 0; padding: 0; }
+    header, footer { background-color: #4e342e; color: white; padding: 1em; text-align: center; }
+    .container { padding: 2em; max-width: 800px; margin: auto; }
+    select, input, textarea, button {
+      width: 100%; padding: 0.8em; margin: 0.5em 0; border: 1px solid #ccc; border-radius: 6px;
+    }
+    button { background-color: #fbc02d; color: #000; font-weight: bold; border: none; cursor: pointer; }
+    .result-box { background: #fff; border: 1px solid #aaa; padding: 1em; border-radius: 6px; margin-top: 1em; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>LegalBee - AI Legal Assistant</h1>
+  </header>
+
+  <div class="container">
+    <select id="category">
+      <option value="">Select Category</option>
+      <option>Housing and Rent</option>
+      <option>Police Complaint</option>
+      <option>Women's Rights</option>
+      <option>Cyber Crime</option>
+      <option>Consumer Rights</option>
+    </select>
+    <textarea id="question" rows="4" placeholder="Ask your legal question..."></textarea>
+    <button onclick="askLegalAI()">Get Answer</button>
+
+    <div id="result" class="result-box" style="display:none;"></div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 LegalBee. All rights reserved.</p>
+  </footer>
+
+  <script>
+    async function askLegalAI() {
+      const question = document.getElementById("question").value;
+      const category = document.getElementById("category").value;
+      const resultBox = document.getElementById("result");
+      resultBox.style.display = "block";
+      resultBox.innerHTML = "Thinking...";
+
+      const res = await fetch("/api/legalai", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question, category })
+      });
+
+      const data = await res.json();
+      resultBox.innerHTML = "<strong>Answer:</strong><br>" + data.answer;
+    }
+  </script>
+</body>
+</html>
