@@ -1,0 +1,9 @@
+body { font-family: Arial, sans-serif; background: #fff8e1; color: #4e342e; }
+header { background: #ffeb3b; padding: 10px; text-align: center; }
+.logo { width: 100px; }
+nav a { margin: 0 10px; text-decoration: none; color: #4e342e; }
+.slideshow { text-align: center; padding: 20px; }
+.ask-box { margin: 20px; text-align: center; }
+textarea { width: 60%; height: 100px; }
+button { padding: 10px 20px; background: #795548; color: white; border: none; }
+footer { background: #ffeb3b; text-align: center; padding: 10px; margin-top: 20px; }
